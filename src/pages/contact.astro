@@ -12,7 +12,7 @@ import { SITE_TITLE, COMPANY_EMAIL, COMPANY_PHONE } from "../consts";
 
 const pageTitle = `Liên Hệ | ${SITE_TITLE}`;
 const pageDescription =
-	"Liên hệ với Leafy Lab để được tư vấn chăm sóc da chuyên sâu. Đội ngũ chuyên gia sẵn sàng hỗ trợ bạn.";
+	"Hỏi gì cũng trả lời hết. Inbox tư vấn da miễn phí hoặc tám chuyện skincare. Chúng mình luôn ở đây.";
 
 // Formspree form ID from environment variable
 const formspreeId =
@@ -67,13 +67,12 @@ const socialLinks = [
 					<h1
 						class="font-display text-5xl md:text-6xl font-bold text-leafy-green mb-6"
 					>
-						Kết Nối Với <br /><span class="text-leafy-accent italic"
-							>Leafy Lab</span
-						>
+						Hỏi Gì Cũng <br /><span class="text-leafy-accent italic"
+							>Trả Lời</span
+						> Hết
 					</h1>
 					<p class="text-xl text-leafy-brown/80 max-w-2xl mx-auto">
-						Đặt lịch tư vấn da miễn phí hoặc gửi câu hỏi cho chuyên
-						gia của chúng tôi.
+						Inbox tư vấn da miễn phí. Hay chỉ đơn giản là tám chuyện skincare. Chúng mình luôn ở đây.
 					</p>
 				</div>
 			</div>
@@ -88,7 +87,7 @@ const socialLinks = [
 						<h2
 							class="font-display text-3xl font-bold text-leafy-green mb-6"
 						>
-							Gửi Tin Nhắn
+							Nhắn Tin Cho Chúng Mình
 						</h2>
 						<form
 							action={formspreeAction}
@@ -98,21 +97,21 @@ const socialLinks = [
 							<Input
 								type="text"
 								name="name"
-								label="Họ và tên"
+								label="Gọi bạn là gì?"
 								placeholder="Nguyễn Văn A"
 								required
 							/>
 							<Input
 								type="email"
 								name="email"
-								label="Email"
+								label="Email của bạn"
 								placeholder="email@example.com"
 								required
 							/>
 							<Input
 								type="tel"
 								name="phone"
-								label="Số điện thoại"
+								label="Số điện thoại (nếu muốn gọi lại)"
 								placeholder="0901 234 567"
 							/>
 							<div class="flex flex-col gap-2">
@@ -120,7 +119,7 @@ const socialLinks = [
 									for="message"
 									class="text-sm font-bold text-leafy-green ml-2"
 								>
-									Nội dung <span
+									Bạn muốn hỏi gì? <span
 										class="text-leafy-accent ml-1"
 										aria-hidden="true">*</span
 									>
@@ -130,7 +129,7 @@ const socialLinks = [
 									name="message"
 									rows="5"
 									required
-									placeholder="Tôi muốn được tư vấn về..."
+									placeholder="Mình có da hỗn hợp thiên dầu, nên dùng sản phẩm nào?"
 									class="w-full px-6 py-4 font-sans text-base text-leafy-brown bg-white border border-leafy-sage/20 rounded-2xl transition-all duration-300 placeholder:text-leafy-brown/40 focus:outline-none focus:border-leafy-green focus:ring-2 focus:ring-leafy-green/20"
 								></textarea>
 							</div>
@@ -145,7 +144,7 @@ const socialLinks = [
 						<h2
 							class="font-display text-3xl font-bold text-leafy-green mb-6"
 						>
-							Thông Tin Liên Hệ
+							Liên Hệ Trực Tiếp
 						</h2>
 						<div class="space-y-6 mb-12">
 							{
@@ -177,7 +176,7 @@ const socialLinks = [
 						<h3
 							class="font-display text-2xl font-bold text-leafy-green mb-4"
 						>
-							Theo Dõi Chúng Tôi
+							Tám Chuyện Trên Mạng
 						</h3>
 						<div class="flex gap-4">
 							{
@@ -213,7 +212,7 @@ const socialLinks = [
 					<h2
 						class="font-display text-4xl font-bold text-leafy-green mb-4"
 					>
-						Câu Hỏi Thường Gặp
+						Câu Hỏi Hay Gặp
 					</h2>
 				</div>
 
@@ -222,13 +221,10 @@ const socialLinks = [
 						<h3
 							class="font-display text-xl font-bold text-leafy-green mb-3"
 						>
-							Sản phẩm có phù hợp với da nhạy cảm không?
+							Da nhạy cảm dùng có sao không?
 						</h3>
 						<p class="text-leafy-brown/80">
-							Tất cả sản phẩm của Leafy Lab đều được kiểm nghiệm
-							da liễu, phù hợp với mọi loại da kể cả da nhạy cảm.
-							Chúng tôi không sử dụng paraben, sulfate hay hương
-							liệu tổng hợp.
+							Sản phẩm của Leafy Lab đều được kiểm nghiệm da liễu, an toàn cho da nhạy cảm. Không paraben, không sulfate, không mùi tổng hợp. Nhưng nếu da bạn đặc biệt nhạy cảm, inbox để được tư vấn kỹ nhé.
 						</p>
 					</div>
 
@@ -236,12 +232,10 @@ const socialLinks = [
 						<h3
 							class="font-display text-xl font-bold text-leafy-green mb-3"
 						>
-							Làm sao để đặt lịch tư vấn da miễn phí?
+							Làm sao đặt lịch tư vấn da miễn phí?
 						</h3>
 						<p class="text-leafy-brown/80">
-							Bạn có thể điền form liên hệ ở trên hoặc gọi trực
-							tiếp đến hotline của chúng tôi. Đội ngũ chuyên gia
-							sẽ liên hệ lại trong vòng 24h.
+							Điền form trên, hoặc nhắn inbox Facebook/Instagram, hoặc gọi hotline. Chuyên gia sẽ liên hệ trong 24h để book lịch tư vấn online/offline tùy bạn chọn.
 						</p>
 					</div>
 
@@ -249,12 +243,10 @@ const socialLinks = [
 						<h3
 							class="font-display text-xl font-bold text-leafy-green mb-3"
 						>
-							Chính sách đổi trả như thế nào?
+							Đổi trả thế nào nếu không hợp?
 						</h3>
 						<p class="text-leafy-brown/80">
-							Chúng tôi chấp nhận đổi trả trong vòng 30 ngày nếu
-							sản phẩm chưa sử dụng. Nếu có phản ứng da, vui lòng
-							liên hệ ngay để được hỗ trợ.
+							Đổi trả trong 30 ngày nếu chưa mở seal. Nếu đã dùng mà bị kích ứng, liên hệ ngay - chúng mình sẽ hỗ trợ và đổi sản phẩm phù hợp hơn.
 						</p>
 					</div>
 				</div>

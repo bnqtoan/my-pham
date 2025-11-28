@@ -13,28 +13,28 @@ const products = [
 	{
 		name: "Gentle Cleanser",
 		nameVi: "Sữa Rửa Mặt Dịu Nhẹ",
-		description: "Làm sạch sâu với chiết xuất rau má & trà xanh hữu cơ",
+		description: "Rửa sạch mà không khô căng. Rau má + trà xanh organic giúp da mềm mịn sau mỗi lần rửa.",
 		price: "850.000",
 		popular: true,
 	},
 	{
 		name: "Hydrating Toner",
 		nameVi: "Nước Cân Bằng",
-		description: "Cấp ẩm tức thì với hoa cúc & nha đam tự nhiên",
+		description: "Thấm nhanh, da căng mọng ngay. Hoa cúc + nha đam tự nhiên cấp ẩm tức thì, không dính rít.",
 		price: "920.000",
 		popular: true,
 	},
 	{
 		name: "Vitamin C Serum",
 		nameVi: "Tinh Chất Vitamin C",
-		description: "Làm sáng da với vitamin C từ cam quýt hữu cơ",
+		description: "Làm sáng da thật, không cần filter. Vitamin C từ cam organic, thấy hiệu quả sau 2 tuần.",
 		price: "1.850.000",
 		popular: true,
 	},
 	{
 		name: "Night Cream",
 		nameVi: "Kem Dưỡng Đêm",
-		description: "Phục hồi da qua đêm với bơ hạt mỡ & dầu jojoba",
+		description: "Ngủ dậy da căng mịn hẳn. Bơ hạt mỡ + jojoba phục hồi da suốt đêm dài.",
 		price: "1.650.000",
 		popular: false,
 	},
@@ -43,15 +43,15 @@ const products = [
 const values = [
 	{
 		title: "100% Organic",
-		description: "Chứng nhận hữu cơ quốc tế, không hóa chất độc hại",
+		description: "Chứng nhận USDA Organic & Ecocert. Không paraben, không sulfate, không mùi tổng hợp. Sạch thật, không màu mè.",
 	},
 	{
 		title: "Cruelty-Free",
-		description: "Không thử nghiệm trên động vật, thuần chay 100%",
+		description: "Không test trên động vật. Thuần chay 100%. Vì vẻ đẹp không nên đến từ sự đau khổ.",
 	},
 	{
 		title: "Sustainable",
-		description: "Bao bì tái chế, quy trình sản xuất bền vững",
+		description: "Bao bì tái chế được. Sản xuất carbon-neutral. Đẹp lâu dài, không chỉ thoáng qua.",
 	},
 ];
 ---
@@ -93,18 +93,14 @@ const values = [
 					<h1
 						class="font-display text-5xl lg:text-7xl font-bold text-leafy-green leading-[1.1] mb-6"
 					>
-						Vẻ Đẹp <br />
-						<span class="text-leafy-accent italic">Thuần Khiết</span
-						>
-						<br />
-						Từ Thiên Nhiên
+						Da Đẹp Tự Nhiên, <br />
+						<span class="text-leafy-accent italic">Không Cần</span>
+						Filter
 					</h1>
 					<p
 						class="text-lg text-leafy-brown/80 mb-8 max-w-lg mx-auto lg:mx-0 leading-relaxed"
 					>
-						Mỹ phẩm organic cao cấp dành cho Gen Z hiện đại. Kết hợp
-						tinh hoa thiên nhiên với công nghệ sinh học tiên tiến,
-						mang đến làn da khỏe đẹp bền vững.
+						Mỹ phẩm organic cho Gen Z không sợ hashtag #nofilter. Thành phần sạch từ thiên nhiên, hiệu quả nhìn thấy được, giá trị bền lâu.
 					</p>
 					<div
 						class="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start"
@@ -113,13 +109,13 @@ const values = [
 							href="#products"
 							class="px-8 py-4 bg-leafy-green text-white font-bold rounded-full shadow-lg hover:bg-leafy-green/90 hover:shadow-xl hover:-translate-y-1 transition-all duration-300"
 						>
-							Khám Phá Sản Phẩm
+							Mua Ngay
 						</a>
 						<a
-							href="/about"
+							href={getPath("/about")}
 							class="px-8 py-4 bg-white text-leafy-green font-bold rounded-full shadow-md border border-leafy-green/10 hover:bg-leafy-cream hover:shadow-lg hover:-translate-y-1 transition-all duration-300"
 						>
-							Về Chúng Tôi
+							Xem Câu Chuyện
 						</a>
 					</div>
 				</div>
@@ -155,11 +151,10 @@ const values = [
 					<h2
 						class="font-display text-4xl md:text-5xl font-bold text-leafy-green mb-4"
 					>
-						Sản Phẩm Nổi Bật
+						Bán Chạy Nhất
 					</h2>
 					<p class="text-leafy-brown/70">
-						Dòng sản phẩm chăm sóc da organic cao cấp, được yêu
-						thích nhất bởi Gen Z Việt Nam.
+						Những sản phẩm mà Gen Z Việt review 5 sao, đặt mua lại liên tục.
 					</p>
 				</div>
 
@@ -233,7 +228,7 @@ const values = [
 					<h2
 						class="font-display text-4xl md:text-5xl font-bold text-leafy-green mb-4"
 					>
-						Giá Trị Cốt Lõi
+						Làm Đẹp Có Tâm
 					</h2>
 				</div>
 
@@ -298,41 +293,25 @@ const values = [
 						<h2
 							class="font-display text-4xl md:text-5xl font-bold text-leafy-green mb-6"
 						>
-							Khoa Học <br />
-							<span class="italic text-leafy-sage">Gặp Gỡ</span>
-							Thiên Nhiên
+							Thiên Nhiên <br />
+							<span class="italic text-leafy-sage">Gặp</span>
+							Khoa Học
 						</h2>
 						<div
 							class="space-y-4 text-leafy-brown/80 text-lg leading-relaxed"
 						>
 							<p>
-								Leafy Lab ra đời từ niềm tin rằng vẻ đẹp thực sự
-								đến từ sự hài hòa giữa thiên nhiên và khoa học.
-								Chúng tôi kết hợp tinh hoa thực vật hữu cơ với
-								công nghệ sinh học tiên tiến.
+								Leafy Lab sinh ra từ câu hỏi: Tại sao phải chọn giữa organic và hiệu quả? Chúng mình kết hợp tinh chất thực vật thuần khiết với công nghệ sinh học hiện đại.
 							</p>
 							<p>
-								Mỗi sản phẩm được nghiên cứu kỹ lưỡng, thử
-								nghiệm lâm sàng và sản xuất theo tiêu chuẩn quốc
-								tế cao nhất. Chúng tôi cam kết mang đến cho Gen
-								Z Việt Nam những sản phẩm chăm sóc da an toàn,
-								hiệu quả và bền vững.
+								Mỗi chai serum, mỗi tuýp kem được nghiên cứu kỹ càng, test lâm sàng nghiêm ngặt. Vì chúng mình tin: làn da bạn xứng đáng được đối xử tử tế.
 							</p>
 						</div>
 						<a
 							href={getPath("/about")}
 							class="inline-flex items-center gap-2 mt-8 text-leafy-green font-bold hover:text-leafy-accent transition-colors"
 						>
-							Tìm hiểu thêm
-							<svg
-								width="20"
-								height="20"
-								viewBox="0 0 24 24"
-								fill="none"
-								stroke="currentColor"
-								stroke-width="2"
-								><path d="M5 12h14M12 5l7 7-7 7"></path></svg
-							>
+							Câu chuyện đầy đủ →
 						</a>
 					</div>
 				</div>
@@ -346,17 +325,16 @@ const values = [
 					<h2
 						class="font-display text-4xl md:text-5xl font-bold text-white mb-6"
 					>
-						Sẵn Sàng Đầu Tư <br /> Cho Làn Da Của Bạn?
+						Sẵn Sàng Đầu Tư <br /> Vào Chính Mình?
 					</h2>
 					<p class="text-lg text-leafy-cream/90 mb-8">
-						Khám phá bộ sưu tập mỹ phẩm organic cao cấp, được thiết
-						kế đặc biệt cho làn da Gen Z Việt Nam.
+						Làn da đẹp không đến từ filter. Nó đến từ cách bạn chăm sóc bản thân mỗi ngày.
 					</p>
 					<a
 						href={getPath("/contact")}
 						class="inline-block px-10 py-4 bg-white text-leafy-green font-bold rounded-full shadow-lg hover:bg-leafy-cream hover:shadow-xl hover:-translate-y-1 transition-all duration-300"
 					>
-						Liên Hệ Tư Vấn
+						Tư Vấn Miễn Phí
 					</a>
 				</div>
 			</div>
