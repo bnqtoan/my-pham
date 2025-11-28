@@ -1,0 +1,167 @@
+---
+/**
+ * Footer - Leafy Lab
+ * Organic, clean, informative
+ */
+import {
+	COMPANY_NAME,
+	COMPANY_EMAIL,
+	COMPANY_PHONE,
+	COMPANY_TAGLINE,
+} from "../consts";
+import { getPath } from "../utils/paths";
+
+const currentYear = new Date().getFullYear();
+
+const footerLinks = [
+	{
+		title: "Sản phẩm",
+		links: [
+			{ href: "/#menu", label: "Combo Tiết Kiệm" },
+			{ href: "/#menu", label: "Chăm Sóc Da" },
+			{ href: "/#menu", label: "Quà Tặng" },
+		],
+	},
+	{
+		title: "Về Leafy Lab",
+		links: [
+			{ href: "/about", label: "Câu chuyện thương hiệu" },
+			{ href: "/blog", label: "Kiến thức làm đẹp" },
+			{ href: "/contact", label: "Liên hệ" },
+		],
+	},
+];
+
+const socialLinks = [
+	{ href: "https://facebook.com", label: "Facebook" },
+	{ href: "https://instagram.com", label: "Instagram" },
+	{ href: "https://tiktok.com", label: "TikTok" },
+];
+---
+
+<footer
+	class="relative bg-leafy-green text-leafy-cream pt-16 pb-8 overflow-hidden rounded-t-[3rem] mt-12"
+>
+	<div class="relative max-w-7xl mx-auto px-4 md:px-8 lg:px-12">
+		<!-- Main footer -->
+		<div
+			class="grid grid-cols-1 md:grid-cols-[2fr_1fr_1fr] gap-10 md:gap-16 pb-12"
+		>
+			<!-- Brand -->
+			<div class="flex flex-col gap-6">
+				<a
+					href={getPath("/")}
+					class="flex items-center gap-3 no-underline w-fit"
+				>
+					<span
+						class="flex items-center justify-center w-10 h-10 bg-leafy-cream text-leafy-green rounded-full font-display text-xl font-bold"
+						>L</span
+					>
+					<span
+						class="font-display text-2xl font-bold text-leafy-cream tracking-tight"
+						>{COMPANY_NAME}</span
+					>
+				</a>
+				<p
+					class="text-base text-leafy-sage max-w-[320px] leading-relaxed"
+				>
+					{COMPANY_TAGLINE}
+				</p>
+				<div class="flex flex-col gap-3 mt-2">
+					<a
+						href={`mailto:${COMPANY_EMAIL}`}
+						class="inline-flex items-center gap-3 text-leafy-sage no-underline text-base transition-colors hover:text-white"
+					>
+						<svg
+							width="20"
+							height="20"
+							viewBox="0 0 24 24"
+							fill="none"
+							stroke="currentColor"
+							stroke-width="2"
+							stroke-linecap="round"
+							stroke-linejoin="round"
+						>
+							<path
+								d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"
+							></path>
+							<polyline points="22,6 12,13 2,6"></polyline>
+						</svg>
+						{COMPANY_EMAIL}
+					</a>
+					<a
+						href={`tel:${COMPANY_PHONE.replace(/\s/g, "")}`}
+						class="inline-flex items-center gap-3 text-leafy-sage no-underline text-base transition-colors hover:text-white"
+					>
+						<svg
+							width="20"
+							height="20"
+							viewBox="0 0 24 24"
+							fill="none"
+							stroke="currentColor"
+							stroke-width="2"
+							stroke-linecap="round"
+							stroke-linejoin="round"
+						>
+							<path
+								d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"
+							></path>
+						</svg>
+						{COMPANY_PHONE}
+					</a>
+				</div>
+			</div>
+
+			<!-- Footer links -->
+			{
+				footerLinks.map((section) => (
+					<div>
+						<h4 class="font-display text-lg font-bold text-white mb-6">
+							{section.title}
+						</h4>
+						<ul class="list-none m-0 p-0 flex flex-col gap-4">
+							{section.links.map((link) => (
+								<li>
+									<a
+										href={getPath(link.href)}
+										class="text-leafy-sage no-underline text-base transition-colors hover:text-white hover:translate-x-1 inline-block duration-200"
+									>
+										{link.label}
+									</a>
+								</li>
+							))}
+						</ul>
+					</div>
+				))
+			}
+		</div>
+
+		<!-- Divider -->
+		<div class="h-px bg-leafy-sage/20 mb-8"></div>
+
+		<!-- Bottom -->
+		<div
+			class="flex flex-col md:flex-row justify-between items-center gap-4"
+		>
+			<p class="text-sm text-leafy-sage m-0">
+				&copy; {currentYear}
+				{COMPANY_NAME}. All rights reserved.
+			</p>
+			<div class="flex gap-6">
+				{
+					socialLinks.map((social) => (
+						<a
+							href={social.href}
+							target="_blank"
+							rel="noopener noreferrer"
+							aria-label={social.label}
+							class="text-sm font-bold text-leafy-sage no-underline transition-colors hover:text-white uppercase tracking-wider"
+						>
+							{social.label}
+						</a>
+					))
+				}
+			</div>
+		</div>
+	</div>
+</footer>

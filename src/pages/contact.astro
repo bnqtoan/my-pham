@@ -1,0 +1,265 @@
+---
+/**
+ * Contact Page - Leafy Lab
+ * Contact form and consultation booking
+ */
+import Layout from "../layouts/Layout.astro";
+import Header from "../components/Header.astro";
+import Footer from "../components/Footer.astro";
+import Button from "../components/ui/Button.astro";
+import Input from "../components/ui/Input.astro";
+import { SITE_TITLE, COMPANY_EMAIL, COMPANY_PHONE } from "../consts";
+
+const pageTitle = `Liên Hệ | ${SITE_TITLE}`;
+const pageDescription =
+	"Liên hệ với Leafy Lab để được tư vấn chăm sóc da chuyên sâu. Đội ngũ chuyên gia sẵn sàng hỗ trợ bạn.";
+
+// Formspree form ID from environment variable
+const formspreeId =
+	import.meta.env.PUBLIC_FORMSPREE_ID || "your_formspree_form_id";
+const formspreeAction = `https://formspree.io/f/${formspreeId}`;
+
+// Contact info
+const contactInfo = [
+	{
+		icon: "📧",
+		label: "Email",
+		value: COMPANY_EMAIL,
+		href: `mailto:${COMPANY_EMAIL}`,
+	},
+	{
+		icon: "📞",
+		label: "Điện thoại",
+		value: COMPANY_PHONE,
+		href: `tel:${COMPANY_PHONE.replace(/\s/g, "")}`,
+	},
+	{
+		icon: "📍",
+		label: "Địa chỉ",
+		value: "TP. Hồ Chí Minh, Việt Nam",
+		href: null,
+	},
+];
+
+// Social links
+const socialLinks = [
+	{ name: "Facebook", href: "https://facebook.com", icon: "facebook" },
+	{ name: "Instagram", href: "https://instagram.com", icon: "instagram" },
+	{ name: "TikTok", href: "https://tiktok.com", icon: "tiktok" },
+];
+---
+
+<Layout title={pageTitle} description={pageDescription}>
+	<Header />
+	<main>
+		<!-- Hero Section -->
+		<section class="relative pt-32 pb-20 overflow-hidden bg-leafy-cream">
+			<div
+				class="absolute top-0 right-0 w-1/2 h-full bg-[#E8F0E9] rounded-l-[5rem]"
+			>
+			</div>
+			<div class="relative max-w-7xl mx-auto px-4 md:px-8 lg:px-12">
+				<div class="text-center relative z-10">
+					<span
+						class="block font-sans text-sm font-bold tracking-widest uppercase text-leafy-accent mb-4"
+						>Liên Hệ</span
+					>
+					<h1
+						class="font-display text-5xl md:text-6xl font-bold text-leafy-green mb-6"
+					>
+						Kết Nối Với <br /><span class="text-leafy-accent italic"
+							>Leafy Lab</span
+						>
+					</h1>
+					<p class="text-xl text-leafy-brown/80 max-w-2xl mx-auto">
+						Đặt lịch tư vấn da miễn phí hoặc gửi câu hỏi cho chuyên
+						gia của chúng tôi.
+					</p>
+				</div>
+			</div>
+		</section>
+
+		<!-- Contact Section -->
+		<section class="py-24 bg-white">
+			<div class="max-w-7xl mx-auto px-4 md:px-8 lg:px-12">
+				<div class="grid grid-cols-1 lg:grid-cols-2 gap-16">
+					<!-- Contact Form -->
+					<div>
+						<h2
+							class="font-display text-3xl font-bold text-leafy-green mb-6"
+						>
+							Gửi Tin Nhắn
+						</h2>
+						<form
+							action={formspreeAction}
+							method="POST"
+							class="space-y-6"
+						>
+							<Input
+								type="text"
+								name="name"
+								label="Họ và tên"
+								placeholder="Nguyễn Văn A"
+								required
+							/>
+							<Input
+								type="email"
+								name="email"
+								label="Email"
+								placeholder="email@example.com"
+								required
+							/>
+							<Input
+								type="tel"
+								name="phone"
+								label="Số điện thoại"
+								placeholder="0901 234 567"
+							/>
+							<div class="flex flex-col gap-2">
+								<label
+									for="message"
+									class="text-sm font-bold text-leafy-green ml-2"
+								>
+									Nội dung <span
+										class="text-leafy-accent ml-1"
+										aria-hidden="true">*</span
+									>
+								</label>
+								<textarea
+									id="message"
+									name="message"
+									rows="5"
+									required
+									placeholder="Tôi muốn được tư vấn về..."
+									class="w-full px-6 py-4 font-sans text-base text-leafy-brown bg-white border border-leafy-sage/20 rounded-2xl transition-all duration-300 placeholder:text-leafy-brown/40 focus:outline-none focus:border-leafy-green focus:ring-2 focus:ring-leafy-green/20"
+								></textarea>
+							</div>
+							<Button type="submit" variant="primary" size="lg">
+								Gửi Tin Nhắn
+							</Button>
+						</form>
+					</div>
+
+					<!-- Contact Info -->
+					<div>
+						<h2
+							class="font-display text-3xl font-bold text-leafy-green mb-6"
+						>
+							Thông Tin Liên Hệ
+						</h2>
+						<div class="space-y-6 mb-12">
+							{
+								contactInfo.map((info) => (
+									<div class="flex items-start gap-4">
+										<div class="text-3xl">{info.icon}</div>
+										<div>
+											<div class="font-bold text-leafy-green mb-1">
+												{info.label}
+											</div>
+											{info.href ? (
+												<a
+													href={info.href}
+													class="text-leafy-brown/80 hover:text-leafy-accent transition-colors"
+												>
+													{info.value}
+												</a>
+											) : (
+												<div class="text-leafy-brown/80">
+													{info.value}
+												</div>
+											)}
+										</div>
+									</div>
+								))
+							}
+						</div>
+
+						<h3
+							class="font-display text-2xl font-bold text-leafy-green mb-4"
+						>
+							Theo Dõi Chúng Tôi
+						</h3>
+						<div class="flex gap-4">
+							{
+								socialLinks.map((social) => (
+									<a
+										href={social.href}
+										target="_blank"
+										rel="noopener noreferrer"
+										class="w-12 h-12 rounded-full bg-leafy-green/10 flex items-center justify-center hover:bg-leafy-green hover:text-white transition-all duration-300"
+										aria-label={social.name}
+									>
+										<svg
+											width="20"
+											height="20"
+											viewBox="0 0 24 24"
+											fill="currentColor"
+										>
+											<path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8z" />
+										</svg>
+									</a>
+								))
+							}
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
+
+		<!-- FAQ Section -->
+		<section class="py-24 bg-leafy-cream">
+			<div class="max-w-4xl mx-auto px-4 md:px-8 lg:px-12">
+				<div class="text-center mb-12">
+					<h2
+						class="font-display text-4xl font-bold text-leafy-green mb-4"
+					>
+						Câu Hỏi Thường Gặp
+					</h2>
+				</div>
+
+				<div class="space-y-6">
+					<div class="bg-white rounded-[2rem] p-8">
+						<h3
+							class="font-display text-xl font-bold text-leafy-green mb-3"
+						>
+							Sản phẩm có phù hợp với da nhạy cảm không?
+						</h3>
+						<p class="text-leafy-brown/80">
+							Tất cả sản phẩm của Leafy Lab đều được kiểm nghiệm
+							da liễu, phù hợp với mọi loại da kể cả da nhạy cảm.
+							Chúng tôi không sử dụng paraben, sulfate hay hương
+							liệu tổng hợp.
+						</p>
+					</div>
+
+					<div class="bg-white rounded-[2rem] p-8">
+						<h3
+							class="font-display text-xl font-bold text-leafy-green mb-3"
+						>
+							Làm sao để đặt lịch tư vấn da miễn phí?
+						</h3>
+						<p class="text-leafy-brown/80">
+							Bạn có thể điền form liên hệ ở trên hoặc gọi trực
+							tiếp đến hotline của chúng tôi. Đội ngũ chuyên gia
+							sẽ liên hệ lại trong vòng 24h.
+						</p>
+					</div>
+
+					<div class="bg-white rounded-[2rem] p-8">
+						<h3
+							class="font-display text-xl font-bold text-leafy-green mb-3"
+						>
+							Chính sách đổi trả như thế nào?
+						</h3>
+						<p class="text-leafy-brown/80">
+							Chúng tôi chấp nhận đổi trả trong vòng 30 ngày nếu
+							sản phẩm chưa sử dụng. Nếu có phản ứng da, vui lòng
+							liên hệ ngay để được hỗ trợ.
+						</p>
+					</div>
+				</div>
+			</div>
+		</section>
+	</main>
+	<Footer />
+</Layout>

@@ -1,0 +1,171 @@
+---
+/**
+ * Blog Post Layout - Leafy Lab
+ * Clean, sophisticated reading experience
+ */
+import { Image } from "astro:assets";
+import type { CollectionEntry } from "astro:content";
+import Layout from "./Layout.astro";
+import Header from "../components/Header.astro";
+import Footer from "../components/Footer.astro";
+import FormattedDate from "../components/FormattedDate.astro";
+import { getPath } from "../utils/paths";
+
+type Props = CollectionEntry<"blog">["data"];
+
+const { title, description, pubDate, updatedDate, heroImage } = Astro.props;
+---
+
+<Layout title={title} description={description}>
+	<Header />
+	<main class="pt-32 pb-20 bg-white">
+		<article>
+			<!-- Article Header -->
+			<header class="mb-12 text-center">
+				<div class="max-w-4xl mx-auto px-4">
+					<a
+						href={getPath("/blog")}
+						class="inline-flex items-center gap-2 text-sm font-bold text-leafy-sage uppercase tracking-wider mb-8 hover:text-leafy-accent transition-colors"
+					>
+						<svg
+							width="16"
+							height="16"
+							viewBox="0 0 24 24"
+							fill="none"
+							stroke="currentColor"
+							stroke-width="2"
+							><path d="M19 12H5M12 19l-7-7 7-7"></path></svg
+						>
+						Quay lại Blog
+					</a>
+					<div
+						class="flex items-center justify-center gap-4 text-sm text-leafy-brown/60 mb-6 font-sans"
+					>
+						<FormattedDate date={pubDate} />
+						{
+							updatedDate && (
+								<span class="italic">
+									(Cập nhật:{" "}
+									<FormattedDate date={updatedDate} />)
+								</span>
+							)
+						}
+					</div>
+					<h1
+						class="font-display text-4xl md:text-5xl lg:text-6xl font-bold text-leafy-green leading-tight mb-6"
+					>
+						{title}
+					</h1>
+					{
+						description && (
+							<p class="text-xl text-leafy-brown/80 max-w-2xl mx-auto leading-relaxed">
+								{description}
+							</p>
+						)
+					}
+				</div>
+			</header>
+
+			<!-- Hero Image -->
+			{
+				heroImage && (
+					<div class="mb-16">
+						<div class="max-w-5xl mx-auto px-4">
+							<div class="rounded-[2.5rem] overflow-hidden shadow-soft">
+								<Image
+									width={1200}
+									height={600}
+									src={heroImage}
+									alt={title}
+									loading="eager"
+									class="w-full h-auto"
+								/>
+							</div>
+						</div>
+					</div>
+				)
+			}
+
+			<!-- Article Content -->
+			<div class="max-w-3xl mx-auto px-4">
+				<div class="prose prose-lg prose-leafy mx-auto">
+					<slot />
+				</div>
+
+				<div
+					class="mt-16 pt-8 border-t border-leafy-sage/20 text-center"
+				>
+					<a
+						href={getPath("/blog")}
+						class="inline-flex items-center gap-2 text-leafy-green font-bold hover:text-leafy-accent transition-colors"
+					>
+						<svg
+							width="20"
+							height="20"
+							viewBox="0 0 24 24"
+							fill="none"
+							stroke="currentColor"
+							stroke-width="2"
+							><path d="M19 12H5M12 19l-7-7 7-7"></path></svg
+						>
+						Xem tất cả bài viết
+					</a>
+				</div>
+			</div>
+		</article>
+	</main>
+	<Footer />
+</Layout>
+
+<style is:global>
+	/* Custom Prose Styling for Leafy Lab */
+	.prose-leafy {
+		--tw-prose-body: #583101;
+		--tw-prose-headings: #3a5a40;
+		--tw-prose-links: #d97757;
+		--tw-prose-bold: #3a5a40;
+		--tw-prose-counters: #a3b18a;
+		--tw-prose-bullets: #a3b18a;
+		--tw-prose-hr: rgba(163, 177, 138, 0.3);
+		--tw-prose-quotes: #3a5a40;
+		--tw-prose-quote-borders: #d97757;
+		--tw-prose-captions: #a3b18a;
+		--tw-prose-code: #3a5a40;
+		--tw-prose-pre-code: #fdfcf6;
+		--tw-prose-pre-bg: #3a5a40;
+	}
+
+	.prose-leafy h1,
+	.prose-leafy h2,
+	.prose-leafy h3,
+	.prose-leafy h4 {
+		font-family: "Playfair Display", serif;
+	}
+
+	.prose-leafy a {
+		text-decoration: none;
+		border-bottom: 2px solid rgba(217, 119, 87, 0.3);
+		transition: border-color 0.2s;
+	}
+
+	.prose-leafy a:hover {
+		border-bottom-color: #d97757;
+	}
+
+	.prose-leafy img {
+		border-radius: 1.5rem;
+		box-shadow: 0 10px 40px -10px rgba(58, 90, 64, 0.15);
+	}
+
+	.prose-leafy blockquote {
+		font-family: "Playfair Display", serif;
+		font-style: italic;
+		font-size: 1.5em;
+		line-height: 1.4;
+		border-left-width: 4px;
+		padding-left: 1.5em;
+		background: #fdfcf6;
+		padding: 2rem;
+		border-radius: 0 1.5rem 1.5rem 0;
+	}
+</style>

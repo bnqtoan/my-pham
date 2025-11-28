@@ -1,0 +1,192 @@
+---
+/**
+ * Blog Listing Page - Leafy Lab
+ * Clean, organic, and inviting
+ */
+import { Image } from "astro:assets";
+import { getCollection } from "astro:content";
+import Layout from "../../layouts/Layout.astro";
+import Header from "../../components/Header.astro";
+import Footer from "../../components/Footer.astro";
+import FormattedDate from "../../components/FormattedDate.astro";
+import { SITE_TITLE } from "../../consts";
+import { getPath } from "../../utils/paths";
+
+const pageTitle = `Blog | ${SITE_TITLE}`;
+const pageDescription =
+	"Chia sẻ về văn hóa cà phê Việt Nam, nghệ thuật pha phin, và những câu chuyện thú vị xung quanh tách cà phê.";
+
+const posts = (await getCollection("blog")).sort(
+	(a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf(),
+);
+---
+
+<Layout title={pageTitle} description={pageDescription}>
+	<Header />
+	<main>
+		<!-- Hero Section -->
+		<section class="relative pt-32 pb-20 overflow-hidden bg-leafy-cream">
+			<div
+				class="absolute top-0 right-0 w-1/2 h-full bg-[#E8F0E9] rounded-l-[5rem]"
+			>
+			</div>
+			<div class="relative max-w-7xl mx-auto px-4 md:px-8 lg:px-12">
+				<div class="text-center relative z-10">
+					<span
+						class="block font-sans text-sm font-bold tracking-widest uppercase text-leafy-accent mb-4"
+						>Góc chia sẻ</span
+					>
+					<h1
+						class="font-display text-5xl md:text-6xl font-bold text-leafy-green mb-6"
+					>
+						Chuyện Cà Phê
+					</h1>
+					<p class="text-xl text-leafy-brown/80 max-w-2xl mx-auto">
+						Văn hóa cà phê Việt, nghệ thuật pha phin, và những câu
+						chuyện thú vị
+					</p>
+				</div>
+			</div>
+		</section>
+
+		<!-- Blog Posts Section -->
+		<section class="py-20 bg-white">
+			<div class="max-w-7xl mx-auto px-4 md:px-8 lg:px-12">
+				{
+					posts.length === 0 ? (
+						<div class="text-center p-16 bg-leafy-cream rounded-[2rem] border border-leafy-sage/20">
+							<div class="text-5xl mb-4">☕</div>
+							<h2 class="font-display text-2xl font-bold text-leafy-green mb-3">
+								Chưa có bài viết nào
+							</h2>
+							<p class="text-lg text-leafy-brown/80 m-0">
+								Chúng tôi đang chuẩn bị những câu chuyện thú vị
+								về cà phê. Hãy quay lại sau nhé!
+							</p>
+						</div>
+					) : (
+						<div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+							{posts.map((post, index) => (
+								<article
+									class:list={[
+										"group relative bg-leafy-cream rounded-[2rem] overflow-hidden transition-all duration-300 hover:shadow-soft-hover hover:-translate-y-1",
+										{ "md:col-span-2": index === 0 },
+									]}
+								>
+									<a
+										href={getPath(`/blog/${post.id}/`)}
+										class="block no-underline text-inherit h-full"
+									>
+										<div
+											class:list={[
+												"h-full",
+												{
+													"md:grid md:grid-cols-[1.2fr_1fr] md:gap-8 md:items-center":
+														index === 0,
+												},
+											]}
+										>
+											{post.data.heroImage && (
+												<div
+													class:list={[
+														"relative overflow-hidden",
+														index === 0
+															? "h-full min-h-[400px]"
+															: "aspect-[16/9]",
+													]}
+												>
+													<Image
+														width={
+															index === 0
+																? 1200
+																: 600
+														}
+														height={
+															index === 0
+																? 600
+																: 400
+														}
+														src={
+															post.data.heroImage
+														}
+														alt={post.data.title}
+														loading={
+															index < 3
+																? "eager"
+																: "lazy"
+														}
+														class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+													/>
+												</div>
+											)}
+											<div
+												class:list={[
+													"p-8",
+													{ "md:p-12": index === 0 },
+												]}
+											>
+												<div class="font-sans text-sm font-bold text-leafy-accent uppercase tracking-wider mb-3">
+													<FormattedDate
+														date={post.data.pubDate}
+													/>
+												</div>
+												<h2
+													class:list={[
+														"font-display font-bold text-leafy-green mb-4 leading-tight transition-colors",
+														index === 0
+															? "text-3xl md:text-4xl"
+															: "text-2xl",
+														"group-hover:text-leafy-accent",
+													]}
+												>
+													{post.data.title}
+												</h2>
+												{post.data.description && (
+													<p
+														class:list={[
+															"text-leafy-brown/80 leading-relaxed mb-6",
+															index === 0
+																? "text-lg line-clamp-3"
+																: "text-base line-clamp-3",
+														]}
+													>
+														{post.data.description}
+													</p>
+												)}
+												<span class="inline-flex items-center gap-2 font-sans text-sm font-bold text-leafy-green transition-colors group-hover:text-leafy-accent">
+													Đọc tiếp
+													<svg
+														width="20"
+														height="20"
+														viewBox="0 0 24 24"
+														fill="none"
+														stroke="currentColor"
+														stroke-width="2"
+														class="transition-transform duration-300 group-hover:translate-x-1"
+													>
+														<path d="M5 12h14M12 5l7 7-7 7" />
+													</svg>
+												</span>
+											</div>
+										</div>
+									</a>
+								</article>
+							))}
+						</div>
+					)
+				}
+			</div>
+		</section>
+	</main>
+	<Footer />
+</Layout>
+
+<style>
+	/* Line clamp utilities */
+	.line-clamp-3 {
+		display: -webkit-box;
+		-webkit-line-clamp: 3;
+		-webkit-box-orient: vertical;
+		overflow: hidden;
+	}
+</style>

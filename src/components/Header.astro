@@ -1,0 +1,171 @@
+---
+/**
+ * Header - Leafy Lab (Organic Vibe)
+ * Clean, natural, sticky header
+ */
+import { SITE_TITLE } from "../consts";
+import { getPath } from "../utils/paths";
+
+const navItems = [
+	{ href: "/", label: "Trang chủ" },
+	{ href: "/#products", label: "Sản phẩm" },
+	{ href: "/about", label: "Về chúng tôi" },
+	{ href: "/blog", label: "Blog" },
+	{ href: "/contact", label: "Liên hệ" },
+];
+---
+
+<header
+	id="main-header"
+	class="fixed top-0 left-0 right-0 z-50 py-4 transition-all duration-300 bg-transparent"
+>
+	<nav
+		class="flex items-center justify-between px-4 md:px-8 lg:px-12 max-w-7xl mx-auto"
+		aria-label="Điều hướng chính"
+	>
+		<!-- Logo -->
+		<a
+			href={getPath("/")}
+			class="flex items-center gap-2 no-underline group"
+			aria-label={SITE_TITLE}
+		>
+			<span
+				class="flex items-center justify-center w-10 h-10 bg-leafy-green text-leafy-cream rounded-full font-display text-xl font-bold transition-transform group-hover:scale-110"
+				>L</span
+			>
+			<span
+				class="font-display text-2xl font-bold text-leafy-green tracking-tight"
+				>{SITE_TITLE}</span
+			>
+		</a>
+
+		<!-- Mobile Toggle -->
+		<button
+			class="mobile-toggle md:hidden bg-transparent border-none p-2 cursor-pointer text-leafy-green"
+			aria-label="Mở menu"
+			aria-expanded="false"
+			aria-controls="nav-menu"
+		>
+			<svg
+				class="hamburger w-8 h-8"
+				viewBox="0 0 24 24"
+				fill="none"
+				stroke="currentColor"
+				stroke-width="2"
+				stroke-linecap="round"
+				stroke-linejoin="round"
+			>
+				<line x1="3" y1="12" x2="21" y2="12"></line>
+				<line x1="3" y1="6" x2="21" y2="6"></line>
+				<line x1="3" y1="18" x2="21" y2="18"></line>
+			</svg>
+		</button>
+
+		<!-- Desktop Nav -->
+		<ul
+			id="nav-menu"
+			class="nav-links hidden md:flex items-center gap-2 list-none m-0 p-0"
+		>
+			{
+				navItems.map((item) => (
+					<li>
+						<a
+							href={getPath(item.href)}
+							class="relative font-sans text-base font-semibold text-leafy-brown no-underline px-4 py-2 rounded-full transition-all duration-200 hover:text-leafy-green hover:bg-leafy-green/10"
+						>
+							{item.label}
+						</a>
+					</li>
+				))
+			}
+			<li class="ml-4">
+				<a
+					href={getPath("/contact")}
+					class="inline-flex items-center gap-2 px-6 py-2.5 bg-leafy-accent text-white font-sans text-base font-bold no-underline rounded-full transition-all duration-200 shadow-soft hover:bg-leafy-accent-dark hover:shadow-soft-hover hover:-translate-y-0.5"
+				>
+					<span>Liên hệ</span>
+					<svg
+						width="18"
+						height="18"
+						viewBox="0 0 24 24"
+						fill="none"
+						stroke="currentColor"
+						stroke-width="2.5"
+						stroke-linecap="round"
+						stroke-linejoin="round"
+						class="transition-transform duration-150 group-hover:translate-x-1"
+					>
+						<path d="M5 12h14"></path>
+						<path d="M12 5l7 7-7 7"></path>
+					</svg>
+				</a>
+			</li>
+		</ul>
+	</nav>
+</header>
+
+<script>
+	const header = document.getElementById("main-header");
+
+	function updateHeader() {
+		if (window.scrollY > 20) {
+			header?.classList.add("scrolled");
+		} else {
+			header?.classList.remove("scrolled");
+		}
+	}
+
+	const toggle = document.querySelector(".mobile-toggle");
+	const navMenu = document.getElementById("nav-menu");
+	const hamburger = toggle?.querySelector(".hamburger");
+
+	toggle?.addEventListener("click", () => {
+		const expanded = toggle.getAttribute("aria-expanded") === "true";
+		toggle.setAttribute("aria-expanded", String(!expanded));
+		navMenu?.classList.toggle("open");
+		toggle.setAttribute("aria-label", expanded ? "Mở menu" : "Đóng menu");
+
+		// Simple icon toggle logic could go here if needed
+	});
+
+	window.addEventListener("scroll", updateHeader, { passive: true });
+	updateHeader();
+</script>
+
+<style>
+	header.scrolled {
+		background-color: rgba(253, 252, 246, 0.95); /* leafy-cream */
+		backdrop-filter: blur(12px);
+		box-shadow: 0 4px 20px -5px rgba(58, 90, 64, 0.1);
+		padding-top: 0.75rem;
+		padding-bottom: 0.75rem;
+	}
+
+	/* Mobile menu styles */
+	@media (max-width: 767px) {
+		.nav-links {
+			@apply absolute top-full left-0 right-0 flex-col gap-0 opacity-0 invisible -translate-y-4 transition-all duration-300;
+			background-color: #fdfcf6;
+			box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+			padding: 1rem;
+			margin: 0 1rem;
+			border-radius: 1.5rem;
+		}
+
+		.nav-links.open {
+			@apply opacity-100 visible translate-y-0 flex;
+		}
+
+		.nav-links li {
+			@apply w-full;
+		}
+
+		.nav-links li a {
+			@apply block w-full px-4 py-3 text-center hover:bg-leafy-green/5;
+		}
+
+		.nav-links li:last-child {
+			@apply mt-2;
+		}
+	}
+</style>

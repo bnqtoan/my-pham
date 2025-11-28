@@ -1,0 +1,223 @@
+---
+/**
+ * About Page - Leafy Lab
+ * Brand story, values, and commitment to organic beauty
+ */
+import Layout from "../layouts/Layout.astro";
+import Header from "../components/Header.astro";
+import Footer from "../components/Footer.astro";
+import { SITE_TITLE, COMPANY_NAME, COMPANY_TAGLINE } from "../consts";
+
+const pageTitle = `Về Chúng Tôi | ${SITE_TITLE}`;
+const pageDescription =
+	"Câu chuyện về Leafy Lab - Thương hiệu mỹ phẩm organic cao cấp dành cho Gen Z Việt Nam, kết hợp tinh hoa thiên nhiên và công nghệ sinh học.";
+
+const values = [
+	{
+		title: "100% Organic",
+		description:
+			"Chứng nhận hữu cơ quốc tế USDA, Ecocert. Không paraben, không sulfate, không hóa chất độc hại.",
+		icon: "🌿",
+	},
+	{
+		title: "Cruelty-Free",
+		description:
+			"Không thử nghiệm trên động vật. Thuần chay 100%, thân thiện với mọi sinh vật.",
+		icon: "🐰",
+	},
+	{
+		title: "Sustainable",
+		description:
+			"Bao bì tái chế, quy trình sản xuất carbon-neutral, cam kết bảo vệ môi trường.",
+		icon: "♻️",
+	},
+	{
+		title: "Science-Backed",
+		description:
+			"Công nghệ sinh học tiên tiến, thử nghiệm lâm sàng, hiệu quả được chứng minh.",
+		icon: "🔬",
+	},
+];
+
+const milestones = [
+	{
+		year: "2020",
+		event: "Khởi Đầu",
+		description:
+			"Thành lập phòng lab nghiên cứu mỹ phẩm organic tại TP.HCM.",
+	},
+	{
+		year: "2022",
+		event: "Ra Mắt",
+		description:
+			"Giới thiệu dòng sản phẩm đầu tiên, nhận chứng nhận organic quốc tế.",
+	},
+	{
+		year: "2025",
+		event: "Hiện Tại",
+		description:
+			"Thương hiệu mỹ phẩm organic được Gen Z Việt Nam tin dùng và yêu thích.",
+	},
+];
+---
+
+<Layout title={pageTitle} description={pageDescription}>
+	<Header />
+	<main>
+		<!-- Hero Section -->
+		<section class="relative pt-32 pb-20 overflow-hidden bg-leafy-cream">
+			<div
+				class="absolute top-0 right-0 w-1/2 h-full bg-[#E8F0E9] rounded-l-[5rem]"
+			>
+			</div>
+			<div class="relative max-w-7xl mx-auto px-4 md:px-8 lg:px-12">
+				<div class="text-center relative z-10">
+					<span
+						class="block font-sans text-sm font-bold tracking-widest uppercase text-leafy-accent mb-4"
+						>Về chúng tôi</span
+					>
+					<h1
+						class="font-display text-5xl md:text-6xl font-bold text-leafy-green mb-6"
+					>
+						{COMPANY_NAME}
+					</h1>
+					<p class="text-xl text-leafy-brown/80 max-w-2xl mx-auto">
+						{COMPANY_TAGLINE}
+					</p>
+				</div>
+			</div>
+		</section>
+
+		<!-- Story Section -->
+		<section class="py-24 bg-white">
+			<div class="max-w-4xl mx-auto px-4 md:px-8 lg:px-12">
+				<div class="prose prose-lg mx-auto">
+					<h2
+						class="font-display text-4xl font-bold text-leafy-green mb-6"
+					>
+						Câu Chuyện Của Chúng Tôi
+					</h2>
+					<p class="text-lg text-leafy-brown/80 leading-relaxed mb-6">
+						Leafy Lab ra đời từ niềm tin rằng <strong
+							>vẻ đẹp thực sự đến từ sự hài hòa giữa thiên nhiên
+							và khoa học</strong
+						>. Chúng tôi là một nhóm các nhà khoa học, dược sĩ và
+						chuyên gia làm đẹp, cùng chung tầm nhìn tạo ra dòng mỹ
+						phẩm organic cao cấp dành riêng cho Gen Z Việt Nam.
+					</p>
+					<p class="text-lg text-leafy-brown/80 leading-relaxed mb-6">
+						Trong thời đại mà làn da phải đối mặt với ô nhiễm,
+						stress và áp lực thẩm mỹ, chúng tôi tin rằng <strong
+							>skincare không chỉ là làm đẹp, mà còn là self-care</strong
+						> - chăm sóc bản thân một cách tử tế và có trách nhiệm.
+					</p>
+					<p class="text-lg text-leafy-brown/80 leading-relaxed">
+						Mỗi sản phẩm của Leafy Lab được nghiên cứu kỹ lưỡng, kết
+						hợp tinh hoa thực vật hữu cơ với công nghệ sinh học tiên
+						tiến. Chúng tôi cam kết mang đến cho bạn những sản phẩm <strong
+							>an toàn, hiệu quả và bền vững</strong
+						>.
+					</p>
+				</div>
+			</div>
+		</section>
+
+		<!-- Values Section -->
+		<section class="py-24 bg-leafy-cream">
+			<div class="max-w-7xl mx-auto px-4 md:px-8 lg:px-12">
+				<div class="text-center mb-16">
+					<h2
+						class="font-display text-4xl md:text-5xl font-bold text-leafy-green mb-4"
+					>
+						Giá Trị Cốt Lõi
+					</h2>
+					<p class="text-lg text-leafy-brown/70 max-w-2xl mx-auto">
+						Những cam kết mà chúng tôi luôn giữ vững trong từng sản
+						phẩm
+					</p>
+				</div>
+
+				<div
+					class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8"
+				>
+					{
+						values.map((value) => (
+							<div class="bg-white rounded-[2rem] p-8 text-center hover:shadow-soft transition-all duration-300">
+								<div class="text-5xl mb-4">{value.icon}</div>
+								<h3 class="font-display text-2xl font-bold text-leafy-green mb-3">
+									{value.title}
+								</h3>
+								<p class="text-leafy-brown/80 leading-relaxed">
+									{value.description}
+								</p>
+							</div>
+						))
+					}
+				</div>
+			</div>
+		</section>
+
+		<!-- Timeline Section -->
+		<section class="py-24 bg-white">
+			<div class="max-w-4xl mx-auto px-4 md:px-8 lg:px-12">
+				<div class="text-center mb-16">
+					<h2
+						class="font-display text-4xl md:text-5xl font-bold text-leafy-green mb-4"
+					>
+						Hành Trình Phát Triển
+					</h2>
+				</div>
+
+				<div class="space-y-12">
+					{
+						milestones.map((milestone, index) => (
+							<div class="flex gap-8 items-start">
+								<div class="flex-shrink-0 w-24 text-right">
+									<span class="font-display text-3xl font-bold text-leafy-accent">
+										{milestone.year}
+									</span>
+								</div>
+								<div class="flex-grow border-l-2 border-leafy-sage/30 pl-8 pb-8">
+									<h3 class="font-display text-2xl font-bold text-leafy-green mb-2">
+										{milestone.event}
+									</h3>
+									<p class="text-lg text-leafy-brown/80">
+										{milestone.description}
+									</p>
+								</div>
+							</div>
+						))
+					}
+				</div>
+			</div>
+		</section>
+
+		<!-- CTA Section -->
+		<section class="py-24 bg-leafy-green text-center">
+			<div class="max-w-2xl mx-auto px-4">
+				<h2
+					class="font-display text-4xl md:text-5xl font-bold text-white mb-6"
+				>
+					Hãy Để Chúng Tôi <br /> Đồng Hành Cùng Bạn
+				</h2>
+				<p class="text-lg text-leafy-cream/90 mb-8">
+					Khám phá bộ sưu tập mỹ phẩm organic cao cấp, được thiết kế
+					đặc biệt cho làn da Gen Z Việt Nam.
+				</p>
+				<a
+					href="/"
+					class="inline-block px-10 py-4 bg-white text-leafy-green font-bold rounded-full shadow-lg hover:bg-leafy-cream hover:shadow-xl hover:-translate-y-1 transition-all duration-300"
+				>
+					Khám Phá Sản Phẩm
+				</a>
+			</div>
+		</section>
+	</main>
+	<Footer />
+</Layout>
+
+<style>
+	.prose h2 {
+		margin-top: 0;
+	}
+</style>

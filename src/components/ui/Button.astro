@@ -1,0 +1,59 @@
+---
+/**
+ * Button - Leafy Lab
+ * Organic, rounded, premium feel
+ */
+interface Props {
+	variant?: "primary" | "secondary" | "ghost" | "outline";
+	size?: "sm" | "md" | "lg";
+	href?: string;
+	type?: "button" | "submit" | "reset";
+	disabled?: boolean;
+	class?: string;
+}
+
+const {
+	variant = "primary",
+	size = "md",
+	href,
+	type = "button",
+	disabled = false,
+	class: className = "",
+} = Astro.props;
+
+const Tag = href ? "a" : "button";
+const attrs = href ? { href } : { type, disabled };
+
+// Base classes
+const baseClasses =
+	"relative inline-flex items-center justify-center gap-2 font-sans font-bold no-underline border-none rounded-full cursor-pointer transition-all duration-300 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-leafy-green disabled:opacity-50 disabled:cursor-not-allowed";
+
+// Size classes
+const sizeClasses = {
+	sm: "px-4 py-2 text-sm",
+	md: "px-6 py-3 text-base",
+	lg: "px-8 py-4 text-lg",
+};
+
+// Variant classes
+const variantClasses = {
+	primary:
+		"bg-leafy-green text-white shadow-lg hover:bg-leafy-green/90 hover:shadow-xl hover:-translate-y-1 active:translate-y-0",
+	secondary:
+		"bg-leafy-accent text-white shadow-lg hover:bg-leafy-accent/90 hover:shadow-xl hover:-translate-y-1 active:translate-y-0",
+	ghost: "bg-transparent text-leafy-green hover:bg-leafy-green/10",
+	outline:
+		"bg-transparent text-leafy-green border-2 border-leafy-green hover:bg-leafy-green hover:text-white",
+};
+
+const classes = [
+	baseClasses,
+	sizeClasses[size],
+	variantClasses[variant],
+	className,
+].join(" ");
+---
+
+<Tag class={classes} {...attrs}>
+	<slot />
+</Tag>

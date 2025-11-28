@@ -1,0 +1,257 @@
+/* Dark OLED Luxury Effects System */
+/* Subtle glows, cinematic shadows, premium interactions */
+:root {
+	/* Shadows - glowing on dark backgrounds */
+	--shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.5);
+	--shadow-md: 0 4px 12px rgba(0, 0, 0, 0.6);
+	--shadow-lg: 0 8px 32px rgba(0, 0, 0, 0.7);
+	--shadow-xl: 0 16px 48px rgba(0, 0, 0, 0.8);
+	--shadow-2xl: 0 24px 64px rgba(0, 0, 0, 0.9);
+
+	/* Glow effects */
+	--glow-sm: 0 0 20px var(--color-primary-glow);
+	--glow-md: 0 0 40px var(--color-primary-glow);
+	--glow-lg: 0 0 60px var(--color-primary-glow);
+	--glow-accent: 0 0 40px var(--color-accent-glow);
+	--glow-violet: 0 0 40px var(--color-violet-glow);
+
+	/* Card glow on hover */
+	--shadow-glow: 0 0 0 1px var(--color-border-glow), 0 8px 32px rgba(0, 0, 0, 0.5);
+
+	/* Border radius */
+	--radius-sm: 4px;
+	--radius-md: 8px;
+	--radius-lg: 12px;
+	--radius-xl: 16px;
+	--radius-2xl: 24px;
+	--radius-3xl: 32px;
+	--radius-full: 9999px;
+
+	/* Transitions - smooth, luxurious */
+	--transition-fast: 150ms cubic-bezier(0.4, 0, 0.2, 1);
+	--transition-base: 300ms cubic-bezier(0.4, 0, 0.2, 1);
+	--transition-slow: 500ms cubic-bezier(0.4, 0, 0.2, 1);
+	--transition-slower: 800ms cubic-bezier(0.4, 0, 0.2, 1);
+
+	/* Spring transition for interactive elements */
+	--transition-spring: 500ms cubic-bezier(0.34, 1.56, 0.64, 1);
+
+	/* Blur values */
+	--blur-sm: 4px;
+	--blur-md: 8px;
+	--blur-lg: 16px;
+	--blur-xl: 32px;
+}
+
+/* Premium dark card */
+.card {
+	background: var(--color-bg-card);
+	border: 1px solid var(--color-border);
+	border-radius: var(--radius-xl);
+	transition: all var(--transition-base);
+}
+
+.card:hover {
+	border-color: var(--color-border-glow);
+	box-shadow: var(--shadow-glow);
+}
+
+/* Glass effect - dark frosted */
+.glass {
+	background: var(--glass-bg);
+	backdrop-filter: blur(var(--blur-lg)) saturate(180%);
+	-webkit-backdrop-filter: blur(var(--blur-lg)) saturate(180%);
+	border: 1px solid var(--glass-border);
+}
+
+.glass:hover {
+	background: var(--glass-bg-hover);
+	border-color: var(--glass-border-hover);
+}
+
+/* Glass dark variant */
+.glass-dark {
+	background: rgba(0, 0, 0, 0.7);
+	backdrop-filter: blur(var(--blur-xl)) saturate(150%);
+	-webkit-backdrop-filter: blur(var(--blur-xl)) saturate(150%);
+	border: 1px solid var(--glass-border);
+}
+
+/* Hover lift with glow */
+.hover-lift {
+	transition: transform var(--transition-base), box-shadow var(--transition-base);
+}
+
+.hover-lift:hover {
+	transform: translateY(-4px);
+	box-shadow: var(--glow-sm);
+}
+
+/* Glow button effect */
+.btn-glow {
+	position: relative;
+	overflow: hidden;
+}
+
+.btn-glow::before {
+	content: '';
+	position: absolute;
+	inset: -2px;
+	background: var(--gradient-accent);
+	border-radius: inherit;
+	opacity: 0;
+	transition: opacity var(--transition-base);
+	z-index: -1;
+	filter: blur(12px);
+}
+
+.btn-glow:hover::before {
+	opacity: 0.6;
+}
+
+/* Link underline glow */
+.link-glow {
+	position: relative;
+	text-decoration: none;
+	transition: color var(--transition-fast);
+}
+
+.link-glow::after {
+	content: '';
+	position: absolute;
+	bottom: -2px;
+	left: 0;
+	width: 100%;
+	height: 2px;
+	background: var(--color-primary);
+	transform: scaleX(0);
+	transform-origin: right;
+	transition: transform var(--transition-base);
+	box-shadow: var(--glow-sm);
+}
+
+.link-glow:hover {
+	color: var(--color-primary);
+}
+
+.link-glow:hover::after {
+	transform: scaleX(1);
+	transform-origin: left;
+}
+
+/* Border glow animation */
+@keyframes borderGlow {
+	0%, 100% {
+		border-color: var(--color-border);
+		box-shadow: none;
+	}
+	50% {
+		border-color: var(--color-primary);
+		box-shadow: var(--glow-sm);
+	}
+}
+
+.animate-border-glow {
+	animation: borderGlow 3s ease-in-out infinite;
+}
+
+/* Cinematic fade in */
+@keyframes fadeIn {
+	from { opacity: 0; }
+	to { opacity: 1; }
+}
+
+@keyframes fadeInUp {
+	from {
+		opacity: 0;
+		transform: translateY(30px);
+	}
+	to {
+		opacity: 1;
+		transform: translateY(0);
+	}
+}
+
+@keyframes fadeInScale {
+	from {
+		opacity: 0;
+		transform: scale(0.95);
+	}
+	to {
+		opacity: 1;
+		transform: scale(1);
+	}
+}
+
+/* Slide reveal */
+@keyframes slideReveal {
+	from {
+		clip-path: inset(0 100% 0 0);
+	}
+	to {
+		clip-path: inset(0 0 0 0);
+	}
+}
+
+/* Glow pulse */
+@keyframes glowPulse {
+	0%, 100% {
+		box-shadow: var(--glow-sm);
+	}
+	50% {
+		box-shadow: var(--glow-md);
+	}
+}
+
+.animate-fade-in {
+	animation: fadeIn 0.8s ease-out forwards;
+}
+
+.animate-fade-in-up {
+	animation: fadeInUp 0.8s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}
+
+.animate-fade-in-scale {
+	animation: fadeInScale 0.8s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}
+
+.animate-glow-pulse {
+	animation: glowPulse 2s ease-in-out infinite;
+}
+
+/* Stagger animations - cinematic timing */
+.stagger > * {
+	opacity: 0;
+	animation: fadeInUp 0.6s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}
+
+.stagger > *:nth-child(1) { animation-delay: 0.1s; }
+.stagger > *:nth-child(2) { animation-delay: 0.2s; }
+.stagger > *:nth-child(3) { animation-delay: 0.3s; }
+.stagger > *:nth-child(4) { animation-delay: 0.4s; }
+.stagger > *:nth-child(5) { animation-delay: 0.5s; }
+.stagger > *:nth-child(6) { animation-delay: 0.6s; }
+
+/* Divider with glow */
+.divider {
+	height: 1px;
+	background: linear-gradient(90deg, transparent, var(--color-border-glow), transparent);
+	width: 100%;
+}
+
+.divider-glow {
+	height: 1px;
+	background: linear-gradient(90deg, transparent, var(--color-primary), transparent);
+	box-shadow: 0 0 10px var(--color-primary-glow);
+}
+
+/* Reduced motion */
+@media (prefers-reduced-motion: reduce) {
+	*,
+	*::before,
+	*::after {
+		animation-duration: 0.01ms !important;
+		animation-iteration-count: 1 !important;
+		transition-duration: 0.01ms !important;
+	}
+}
