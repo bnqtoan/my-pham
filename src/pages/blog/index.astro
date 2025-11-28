@@ -14,7 +14,7 @@ import { getPath } from "../../utils/paths";
 
 const pageTitle = `Blog | ${SITE_TITLE}`;
 const pageDescription =
-	"Chia sẻ về văn hóa cà phê Việt Nam, nghệ thuật pha phin, và những câu chuyện thú vị xung quanh tách cà phê.";
+	"Góc chia sẻ về skincare, beauty tips, và những câu chuyện organic beauty cho Gen Z Việt Nam.";
 
 const posts = (await getCollection("blog")).sort(
 	(a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf(),
@@ -34,16 +34,15 @@ const posts = (await getCollection("blog")).sort(
 				<div class="text-center relative z-10">
 					<span
 						class="block font-sans text-sm font-bold tracking-widest uppercase text-leafy-accent mb-4"
-						>Góc chia sẻ</span
+						>Beauty Blog</span
 					>
 					<h1
 						class="font-display text-5xl md:text-6xl font-bold text-leafy-green mb-6"
 					>
-						Chuyện Cà Phê
+						Chuyện Da Đẹp
 					</h1>
 					<p class="text-xl text-leafy-brown/80 max-w-2xl mx-auto">
-						Văn hóa cà phê Việt, nghệ thuật pha phin, và những câu
-						chuyện thú vị
+						Skincare tips, beauty trends, và organic lifestyle cho Gen Z
 					</p>
 				</div>
 			</div>
@@ -55,13 +54,12 @@ const posts = (await getCollection("blog")).sort(
 				{
 					posts.length === 0 ? (
 						<div class="text-center p-16 bg-leafy-cream rounded-[2rem] border border-leafy-sage/20">
-							<div class="text-5xl mb-4">☕</div>
+							<div class="text-5xl mb-4">🌿</div>
 							<h2 class="font-display text-2xl font-bold text-leafy-green mb-3">
 								Chưa có bài viết nào
 							</h2>
 							<p class="text-lg text-leafy-brown/80 m-0">
-								Chúng tôi đang chuẩn bị những câu chuyện thú vị
-								về cà phê. Hãy quay lại sau nhé!
+								Chúng mình đang chuẩn bị những bài viết hay về skincare. Quay lại sau nhé!
 							</p>
 						</div>
 					) : (
